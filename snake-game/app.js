@@ -75,32 +75,30 @@ function movesnake(){
     updateboard();
 }
 
+let gameStarted = false;
+
 function changedirection(event){
     switch (event.key) {
         case 'ArrowUp':
-            if(direction.y===0) direction={x:0 , y:-1};
+            if(direction.y === 0) direction = {x: 0, y: -1};
             break;
         case 'ArrowDown':
-            if(direction.y===0) direction={x:0 , y: 1};
+            if(direction.y === 0) direction = {x: 0, y: 1};
             break;
         case 'ArrowLeft':
-            if(direction.x===0) direction={x:-1 , y: 0};
+            if(direction.x === 0) direction = {x: -1, y: 0};
             break;
         case 'ArrowRight':
-            if(direction.x===0) direction={x:1 , y: 0};
-            break;
-    
-        default:
+            if(direction.x === 0) direction = {x: 1, y: 0};
             break;
     }
 
-    if(direction.x!==0 || direction.y!==0){
-        if(!g_interval){
-            g_interval=setInterval(movesnake,200);
-        }
+    if (!gameStarted && (direction.x !== 0 || direction.y !== 0)) {
+        gameStarted = true;
+        g_interval = setInterval(movesnake, 200);
     }
-    
 }
+
 
 function startGame(){
     updateboard();
